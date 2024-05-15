@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="step_counter.css">
+    <title>Step Counter</title>
+    <link rel="stylesheet" href="steps .css">
+</head>
+<body>
+    <header>
+        <h1>Step Counter</h1>
+    </header>
+    <main>
+        <div class="step-counter">
+            <h2>Step Counter</h2>
+            <p>Total Steps: <span id="step-count">0</span></p>
+            <label for="manual-steps"> Add Steps:</label>
+            <input type="number" id="manual-steps">
+            <button onclick="manualAddSteps()">Add</button>
+            <p id="goal-message"></p>
+        </div>
+        <div class="calories-burned">
+            <h2>Calories Burned</h2>
+            <p>Total Calories: <span id="calories">0</span> cal</p>
+        </div>
+    </main>
+
+    <button id="watch-icon" onclick="showWatchIcon()">⌚</button>
+
+    <script>
+        let stepCount = 0;
+        const dailyGoal = 15000;
+
+        function manualAddSteps() {
+            const manualSteps = parseInt(document.getElementById('manual-steps').value);
+            if (!isNaN(manualSteps)) {
+                stepCount += manualSteps;
+                document.getElementById('step-count').innerText = stepCount;
+                updateCalories();
+                checkGoalAchieved();
+            }
+        }
+
+        function updateCalories() {
+            // Assuming a simple calculation for calories burned (adjust as needed)
+            const caloriesBurned = stepCount * 0.05;
+            document.getElementById('calories').innerText = caloriesBurned.toFixed(2);
+        }
+
+        function checkGoalAchieved() {
+            const goalMessage = document.getElementById('goal-message');
+            if (stepCount >= dailyGoal) {
+                goalMessage.innerText = 'Congratulations! Goal achieved!';
+                goalMessage.style.color = 'green';
+            } else {
+                goalMessage.innerText = '';
+            }
+        }
+
+        function showWatchIcon() {
+            alert('Watch icon clicked!');
+            // You can add additional functionality for the watch icon here
+        }
+    </script>
+</body>
+</html>
