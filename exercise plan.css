@@ -1,0 +1,7 @@
+body {
+    background-image: url(exeercise.jpeg); /* Replace 'background.jpg' with your image file's path */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: black; /* Set text color to white for better visibility */
+}
