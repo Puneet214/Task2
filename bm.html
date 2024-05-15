@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin-right: 1100px;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url(bm.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        #container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #form-container, #result-container {
+            margin-bottom: 20px;
+        }
+
+        #bmi-meter {
+            position: relative;
+            height: 200px;
+            width: 20px;
+            background-color: #ddd;
+            margin-top: 20px;
+        }
+
+        #pin {
+            position: absolute;
+            bottom: 0;
+            height: 20px;
+            width: 20px;
+            background-color: red;
+            border-radius: 50%;
+            transform-origin: bottom center;
+            transform: translateX(-50%) scaleY(0);
+            transition: transform 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1>BMI Calculator</h1>
+        </header>
+        <main>
+            <div id="form-container">
+                <h2>Calculate BMI</h2>
+                <form id="bmi-form" onsubmit="calculateBMI(); return false;">
+                    <label for="weight">Weight (kg):</label>
+                    <input type="number" id="weight" required step="0.1"><br><br>
+
+                    <label for="height">Height (cm):</label>
+                    <input type="number" id="height" required step="0.1"><br><br>
+
+                    <button type="submit">Calculate BMI</button>
+                </form>
+            </div>
+
+            <div id="result-container">
+                <h2>Result</h2>
+                <p>Your BMI: <span id="bmi-result">0</span></p>
+                <div id="bmi-meter">
+                    <div id="pin"></div>
+                </div>
+                <p id="bmi-category">Category: Unknown</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value) / 100; // Convert height to meters
+            const bmi = weight / (height * height);
+            const bmiResultElement = document.getElementById('bmi-result');
+            const bmiCategoryElement = document.getElementById('bmi-category');
+            const pinElement = document.getElementById('pin');
+
+            // Display BMI result
+            bmiResultElement.innerText = bmi.toFixed(1);
+
+            // Determine BMI category
+            let category;
+            if (bmi < 18.5) {
+                category = 'Underweight';
+            } else if (bmi < 24.9) {
+                category = 'Normal Weight';
+            } else if (bmi < 29.9) {
+                category = 'Overweight';
+            } else {
+                category = 'Obesity';
+            }
+            bmiCategoryElement.innerText = `Category: ${category}`;
+
+            // Update BMI meter pin position
+            const pinPosition = (bmi - 18.5) / (29.9 - 18.5) * 100; // Map BMI to percentage
+            pinElement.style.transform = `translateX(-50%) scaleY(${pinPosition / 100})`;
+        }
+    </script>
+</body>
+</html>
