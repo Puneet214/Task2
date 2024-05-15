@@ -13,7 +13,7 @@ h1 {
 }
 table {
     border-collapse: collapse;
-    width: 80%;
+    /* width: 80%;
     margin: 0 auto;
     background-color: #ffffff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -24,7 +24,7 @@ th, td {
     padding: 8px;
     text-align: left;
 }
-th {
+th { */
     background-color: #0074D9;
     color: white;
 }
