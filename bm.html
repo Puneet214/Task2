@@ -108,19 +108,20 @@
             bmiResultElement.innerText = bmi.toFixed(1);
 
             // Determine BMI category
-            let category;
-            if (bmi < 18.5) {
-                category = 'Underweight';
-            } else if (bmi < 24.9) {
-                category = 'Normal Weight';
-            } else if (bmi < 29.9) {
-                category = 'Overweight';
-            } else {
-                category = 'Obesity';
-            }
-            bmiCategoryElement.innerText = `Category: ${category}`;
+          //  let category;
+          //  if (bmi < 18.5) {
+         //       category = 'Underweight';
+         //   } else if (bmi < 24.9) {
+        //        category = 'Normal Weight';
+          //  } else if (bmi < 29.9) {
+          //      category = 'Overweight';
+          //  } else {
+          //      category = 'Obesity';
+         //   }
+         //   bmiCategoryElement.innerText = `Category: ${category}`; 
 
             // Update BMI meter pin position
+        
             const pinPosition = (bmi - 18.5) / (29.9 - 18.5) * 100; // Map BMI to percentage
             pinElement.style.transform = `translateX(-50%) scaleY(${pinPosition / 100})`;
         }
